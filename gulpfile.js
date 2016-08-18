@@ -1,90 +1,65 @@
 'use strict';
 
 var gulp = require('gulp'),
-	plugins = require('gulp-load-plugins')(),
-	sprity = require('sprity'),
+	webpack = require('webpack'),
+	gulpPlugin = require('gulp-load-plugins')(),
 	runSequence = require('run-sequence'),
-	browserSync = require('browser-sync').create();
-
-var	watchOpt = {
-		interval: 500
-	};
-
-/* todo
-
-    "gulp": "^3.9.1",
-
-    "browser-sync": "^2.14.0",
-    "gulp-imagemin": "^3.0.3",
-    "gulp-lb-include": "^0.3.1",
-    "gulp-less": "^3.1.0",
-    "gulp-load-plugins": "^1.2.4",
-    "gulp-run-sequence": "^0.3.2",
-    "gulp-webpack": "^1.5.0",
-    "sprity": "^1.0.8"
-*/
-
-/* webpack */
-gulp.task('webpack', function() {
-	return gulp.src('src/js/index.js')
-		.pipe(webpack())
-		.pipe(gulp.dest('build/'));
-});
+	WebpackDevServer = require('webpack-dev-server'),
+	webpackConfig = require('./webpack.config.js');
 
 
 
-// Static Server + watching scss/html files
-gulp.task('browserSync', function() {
-	console.log('browserSync');
-	browserSync.init({
-	    server: "./build"
-	});
 
-});
-
-
-/* clean */
 gulp.task('clean', function() {
-	console.log('clean');
-	return gulp.src('./build/')
-        .pipe(plugins.clean());
-
-});
-
-/* watch */
-gulp.task('watch', function() {
-	console.log('watch');
-	gulp.watch("src/html/*.html", watchOpt, browserSync.reload);
-	gulp.watch("src/js/*.js", watchOpt, browserSync.reload);
-
+	return gulp.src('./dist/')
+		.pipe(gulpPlugin.clean());
 });
 
 
-
-
-/* run sequence build */
-gulp.task('startSequence', function(cb) {
-	console.log('startSequence');
-	runSequence('clean',['browserSync', 'watch'], cb);
+gulp.task('sequence', function(cb) {
+	runSequence(/*'clean',*/'webpack-dev-server', cb);
 });
 
 
-/* start */
-/*gulp.task('start', ['browserSync', 'watch'], function() {
+/*gulp.task('webpack', function(callback) {
 
-});*/
+	// run webpack
+	webpack({
+		// configuration
+	}, function(err, stats) {
+		if(err) throw new gulpPlugin.util.PluginError("webpack", err);
+		gulpPlugin.util.log("[webpack]", stats.toString({
+			// output options
+		}));
+		callback();
+	});
+});
+
+*/
+gulp.task("webpack-dev-server", function(callback) {
+	var compiler,
+		devServer;
+    // Start a webpack-dev-server
+    compiler = webpack(webpackConfig);
+
+    devServer = new WebpackDevServer(compiler, {
+        // server and middleware options
+    }).listen(8080, "localhost", function(err) {
+        if(err) throw new gulpPlugin.util.PluginError("webpack-dev-server", err);
+        // Server listening
+        gulpPlugin.util.log("[webpack-dev-server]", "http://localhost:8080/src/index.html");
+
+        // keep the server alive or continue?
+        // callback();
+    });
+});
+
 
 
 /* default task */
-gulp.task('default', ['startSequence'] ,function() {
-	console.log('default');
+gulp.task('default', ['sequence'] ,function() {
+	// console.log('default');
 });
-
-
-
-
-
-
 
 
 
