@@ -1,11 +1,31 @@
 'use strict';
 
 var gulp = require('gulp'),
+	path = require('path'),
 	webpack = require('webpack'),
 	gulpPlugin = require('gulp-load-plugins')(),
 	runSequence = require('run-sequence'),
-	WebpackDevServer = require('webpack-dev-server'),
-	webpackConfig = require('./webpack.config.js');
+	webpackDevServer = require('webpack-dev-server'),
+	htmlWebpackPlugin = require('html-webpack-plugin');
+
+var webpackConfig = {
+		entry: { // 엔트리 파일 목록
+			app: ['./src/app.js'] 
+		},
+		output: {
+			path: path.join(__dirname, "dist/"),
+			publicPath: './',
+			filename: 'bundle.js',
+			watch: true
+		},
+		plugins: [
+			new htmlWebpackPlugin({
+				// title: 'the creative art works',
+				filename: 'index.html',
+				template: './src/index.html'
+			})
+		]
+	};
 
 
 
