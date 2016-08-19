@@ -28,56 +28,65 @@ var webpackConfig = {
 	};
 
 
+/* **
+***** sequnce task *****
+** */
+gulp.task('server-sequence', function(cb) {
+	runSequence('webpack-dev-server', cb);
+});
+
+gulp.task('build-sequnce', function(cb) {
+	runSequence('clean','webpack-build', cb);
+});
 
 
+
+/* **
+***** run task *****
+** */
 gulp.task('clean', function() {
 	return gulp.src('./dist/')
 		.pipe(gulpPlugin.clean());
 });
 
 
-gulp.task('sequence', function(cb) {
-	runSequence(/*'clean',*/'webpack-dev-server', cb);
-});
+/* start webpack build */
+gulp.task('webpack-build', function(callback) {
 
-
-/*gulp.task('webpack', function(callback) {
-
-	// run webpack
-	webpack({
-		// configuration
-	}, function(err, stats) {
-		if(err) throw new gulpPlugin.util.PluginError("webpack", err);
-		gulpPlugin.util.log("[webpack]", stats.toString({
+	webpack(
+		webpackConfig
+		, function(err, stats) {
+		if(err) throw new gulpPlugin.util.PluginError("webpack-build", err);
+		gulpPlugin.util.log("[webpack-build]", stats.toString({
 			// output options
 		}));
 		callback();
 	});
 });
 
-*/
+
+/* start webpack dev server */
 gulp.task("webpack-dev-server", function(callback) {
 	var compiler,
 		devServer;
-    // Start a webpack-dev-server
-    compiler = webpack(webpackConfig);
 
-    devServer = new WebpackDevServer(compiler, {
-        // server and middleware options
-    }).listen(8080, "localhost", function(err) {
-        if(err) throw new gulpPlugin.util.PluginError("webpack-dev-server", err);
-        // Server listening
-        gulpPlugin.util.log("[webpack-dev-server]", "http://localhost:8080/src/index.html");
+	compiler = webpack(webpackConfig);
 
-        // keep the server alive or continue?
-        // callback();
-    });
+	devServer = new webpackDevServer(compiler, {
+		// server and middleware options
+	}).listen(8080, "localhost", function(err) {
+		if(err) throw new gulpPlugin.util.PluginError("webpack-dev-server", err);
+
+		// Server listening
+		gulpPlugin.util.log("[webpack-dev-server]", "http://localhost:8080/index.html");
+		// keep the server alive or continue?
+		// callback();
+	});
 });
 
 
-
 /* default task */
-gulp.task('default', ['sequence'] ,function() {
+gulp.task('default', ['server-sequence'] ,function() {
 	// console.log('default');
 });
 
