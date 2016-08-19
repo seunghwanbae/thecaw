@@ -4,8 +4,8 @@
   "description": "the creative art works",
   "main": "index.html",
   "scripts": {
-    "start": "gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "gulp default",
+    "build": "gulp build-sequnce"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "gulp-clean": "^0.3.2",
     "gulp-load-plugins": "^1.2.4",
     "gulp-util": "^3.0.7",
+    "html-webpack-plugin": "^2.22.0",
     "run-sequence": "^1.2.2",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
