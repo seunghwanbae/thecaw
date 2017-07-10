@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule }   from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* Modules */
 import { AppRouterModule } from './router/app-router.module';
@@ -25,8 +26,9 @@ import { WorksComponent } from './components/works/works.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRouterModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule,
+    AppRouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
