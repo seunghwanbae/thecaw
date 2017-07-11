@@ -1,34 +1,4 @@
-<button class="home-animation" (click)="toggleState()">
+<p>Home Page</p>
+<button class="home-animation">
   TEST ANIMATION
 </button>
-<div></div>
-<div
-  [@animationState]="animationStateNow"
-  (@animationState.start)="animationStart($event)"
-  (@animationState.done)="animationDone($event)"
-  style="display:none; border: 1px solid #000; overflow: hidden;">
-  Home Page<br>
-  Home Page<br>
-  Home Page<br>
-  Home Page<br>
-  Home Page<br>
-  Home Page<br>
-  Home Page<br>
-  Home Page<br>
-</div>
-
-
-<div
-  [@animationState]="animationStateNow"
-  (@animationState.start)="animationStart($event)"
-  (@animationState.done)="animationDone($event)"
-  style="display:none; border: 1px solid #000; overflow: hidden;">
-  Home Page1<br>
-  Home Page1<br>
-  Home Page1<br>
-  Home Page1<br>
-  Home Page1<br>
-  Home Page1<br>
-  Home Page1<br>
-  Home Page1<br>
-</div>
