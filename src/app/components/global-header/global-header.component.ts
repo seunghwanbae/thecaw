@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-global-header',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./global-header.component.scss']
 })
 export class GlobalHeaderComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild('test') testCompo;
+  constructor(private el: ElementRef) { }
 
   ngOnInit() {
+
+    console.log(this.el.nativeElement)
   }
 
 }
