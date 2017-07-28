@@ -16,11 +16,10 @@ export class MenuComponent {
   }
 
   toggleNav(item){
-    if( item.open ){
-      item.open = false;
-      this.subMenu.open = false;
-    }else{
-      item.open = true;
+    item.open = ( item.open ) ? false : true;
+
+    for ( let i in this.menuData ){
+      
     }
     console.log( this.subMenu )
   }
