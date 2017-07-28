@@ -1,0 +1,13 @@
+<ul>
+  <li *ngFor="let item of menuData; let i = index"
+  [class.is-open]="item.open">
+    <a 
+      [attr.href]="item.link"
+      [routerLink]="item.routerLink"
+      (click)="toggleNav(item)">
+      {{item.name}}/{{indexString+'/'+i}}
+    </a>
+    <!-- <a [href]="item.link" *ngIf="item.link">{{item.name}}/{{indexString+'/'+i}}</a> -->
+    <div class="sub-menu" caw-menu #subMenu [menuData]="item.list" [indexString]="indexString+'/'+i" *ngIf="item.list"></div>
+  </li>
+</ul>

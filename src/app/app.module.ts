@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { GlobalHeaderComponent } from './components/global-header/global-header.component';
 import { HomeComponent } from './components/home/home.component';
 import { WorksComponent } from './components/works/works.component';
+import { MenuComponent } from './components/common/menu/menu.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { WorksComponent } from './components/works/works.component';
     AppComponent,
     GlobalHeaderComponent,
     HomeComponent,
-    WorksComponent
+    WorksComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
