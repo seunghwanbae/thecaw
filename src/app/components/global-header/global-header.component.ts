@@ -6,25 +6,36 @@ var loadMenu = [
       routerLink: '/'
     },
     {
-      name: 'works',
-      routerLink: '/works',
+      name: 'works1',
+      routerLink: '/works'
+    },
+    {
+      name: 'works2',
+      /*routerLink: '/works',*/
       list: [
         {
           name: 'javascript',
-          routerLink: '/javascript',
+          /*routerLink: '/javascript',*/
           list: [
-            { name: 'sub1'},
-            { name: 'sub2'},
-            { name: 'sub3'}
+            { name: 'javascript-sub1'},
+            { name: 'javascript-sub2'},
+            { name: 'javascript-sub3'}
           ]
         },
         {
           name: 'css',
-          link: '/css',
+          /*link: '/css',*/
           list: [
-            { name: 'sub1'},
-            { name: 'sub2'},
-            { name: 'sub3'}
+            {
+              name: 'css-sub1',
+              list: [
+                { name: 'css-sub1-1'},
+                { name: 'css-sub1-2'},
+                { name: 'css-sub1-3'}
+              ]
+            },
+            { name: 'css-sub2'},
+            { name: 'css-sub3'}
           ]
         },
         {
@@ -34,11 +45,11 @@ var loadMenu = [
       ]
     },
     {
-      name: 'works',
-      routerLink: '/works',
+      name: 'works3',
+      // routerLink: '/works',
       list: [
         {
-          name: 'javascript',
+          name: 'javascriptssss',
           routerLink: '/javascript'
         },
         {
